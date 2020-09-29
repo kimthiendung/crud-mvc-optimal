@@ -1,0 +1,36 @@
+{
+  "name": "node-custom-crud-mvc",
+  "version": "1.0.0",
+  "description": "custom struct folder (node + express + handlebar)",
+  "main": "index.js",
+  "scripts": {
+    "start": "cross-env NODE_ENV=\"dev\" node app.js",
+    "pro": "node app.js"
+  },
+  "author": "kimthiendung@gmail.com",
+  "license": "MIT",
+  "dependencies": {
+    "bluebird": "^3.5.0",
+    "body-parser": "^1.17.2",
+    "cookie-parser": "^1.4.3",
+    "cors": "^2.8.4",
+    "express": "^4.15.4",
+    "express-handlebars": "^3.0.0",
+    "express-session": "^1.15.5",
+    "i18n": "^0.8.3",
+    "lodash": "^4.17.4",
+    "log4js": "1.1.1",
+    "mongoose": "4.10.8",
+    "morgan": "^1.8.2",
+    "nodemailer": "^4.1.0",
+    "passport": "^0.4.0",
+    "passport-google-oauth2": "^0.1.6",
+    "passport-local": "^1.0.0",
+    "passport-oauth2-refresh": "^1.0.0",
+    "pbkdf2": "^3.0.13",
+    "redis": "^2.8.0"
+  },
+  "devDependencies": {
+    "cross-env": "^5.0.5"
+  }
+}

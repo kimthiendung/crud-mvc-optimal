@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<base href="/">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<title>myweb</title>
+	{{>add-on}}
+</head>
+<body class="sidebar-active">
+
+	<!-- #nav -->
+	{{>nav}}
+
+	<div id="wrapper">
+
+		<!-- #header -->
+		{{>header}}
+
+		<!-- #content -->
+		<div id="content" class="container-fluid">
+            {{{body}}}
+		</div>
+		
+		<!-- #footer -->
+		{{>footer}}
+
+	</div>
+
+</body>
+</html>

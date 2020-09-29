@@ -1,0 +1,16 @@
+<div class="row center-xs">
+    <div class="col-md-6 col-sm-8 col-xs-12">
+        <div class="ui card">
+            <div class="content">
+                <form class="ui form" method="POST" action="/example/save">
+                    <input type="hidden" name="_id" value="{{items._id}}">
+                    <div class="field">
+                        <label>First Name</label>
+                        <input type="text" name="name" value="{{items.name}}" placeholder="First Name">
+                    </div>
+                    <button class="ui button blue" type="submit">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

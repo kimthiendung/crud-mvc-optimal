@@ -1,0 +1,132 @@
+<div class="row center-xs" style="min-height: 320px">
+    <div class="col-md-6 col-sm-8 col-xs-12">
+        <div class="ui tall stacked segment">
+            <h2 class="ui header">{{{__ "grant_permission"}}} {{items.username}}</h2>
+            
+            <form id="form-grant" class="ui form">
+                <input type="hidden" id="_id" name="_id" value="{{items._id}}"/>
+
+                <div class="field">
+                    <label>Groups for user</label>
+                    <select id="select-groups" class="ui fluid search dropdown" multiple="" data-groups={{{__json items.groups}}}>
+                        {{#each groups}}
+                            <option value="{{@key}}">{{this}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+                
+                <div class="field">
+                    <label>Actions for user</label>
+                    <table id="table-grant" class="ui celled table" data-actions={{{__json items.actions}}} cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+                                <th>Entity</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>Entity</th>
+                                <th>Actions</th>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            {{#each ENTITY}}
+                                <tr>
+                                    <td>{{@key}}</td>
+                                    <td>
+                                        <div class="inline field">
+                                            <div class="ui toggle checkbox">
+                                                <input class="actions-btn" id="{{@key}}-read" type="checkbox" name="{{@key}}" value="read" />
+                                                <label>read</label>
+                                            </div>
+                                            <div class="ui toggle checkbox">
+                                                <input class="actions-btn" id="{{@key}}-write" type="checkbox" name="{{@key}}" value="write" />
+                                                <label>write</label>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+                </div>
+            </form>
+        </div>
+        <div id="message"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(function(){
+        
+        /*
+         * user actions
+         */
+        var actions = UTILS.parseInt($("#table-grant").attr("data-actions"));
+
+        if(!$.isEmptyObject(actions)){
+            for(var i in actions){
+                if(actions[i].read){
+                    $("#"+i+"-read").prop('checked', true);
+                }
+                if(actions[i].write){
+                    $("#"+i+"-write").prop('checked', true);
+                }
+            }
+        }
+
+        $(".actions-btn").change(function(){
+            var actions = {};
+            var acts = {};
+            $(".actions-btn").each(function(){
+                // get
+                var entity = $(this).attr('name');
+                var key = $(this).val();
+                var active = $(this).is(':checked') ? 1 : 0;
+
+                //extend
+                acts[key] = active;
+                actions[entity] = $.extend({}, acts);
+            });
+
+            var url = "/user/grant";
+            var data = {
+                "_id": $("#_id").val(),
+                "actions": actions
+            }
+            $.post(url, data, function(result){
+                console.log(result)
+            });
+        });
+
+
+        /*
+         * user groups
+         */
+        var groups = UTILS.parseInt($("#select-groups").attr("data-groups"));
+        if(!$.isEmptyObject(groups)){
+            var selected = [];
+            for(var i in groups){
+                selected.push(i);
+            }
+            $("#select-groups").dropdown('set selected', selected);
+        }
+
+        $("#select-groups").dropdown('setting', 'onChange', function(a){
+            var value = $(this).dropdown('get value');
+            var groups = {};
+            for(var i in value){
+                groups[value[i]] = 1;
+            }
+            var url = "/user/grant";
+            var data = {
+                "_id": $("#_id").val(),
+                "groups": groups
+            }
+            $.post(url, data, function(result){
+                console.log(result)
+            });
+        });
+    });
+</script>

@@ -1,0 +1,9 @@
+{{#if USER}}
+<div class="ui dropdown blue">
+  <i class="setting icon"></i>
+  <div class="menu">
+    <div class="item" style="cursor: default;"><i class="user icon"></i>{{ USER.username }}</div>
+    <a class="item" href="/auth/logout"><i class="sign out icon"></i>Logout</a>
+  </div>
+</div>
+{{/if}}

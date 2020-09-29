@@ -1,0 +1,27 @@
+<header id="header">
+    <a href="javascript:void(0)" id="sidebar-menu">
+        <div class="menu-icon">
+            <span></span>
+        </div>
+    </a>
+
+    <div id="logo">
+        <img class="logo-img" src="img/logo.png">
+    </div>
+
+    <div id="menu-main">
+        <a href="javascript:void(0)" class="menu-close menu-off"></a>
+        <ul id="menu" class="menu-hor">
+            <li><a href="/">{{{__ "home"}}}</a></li>
+            <li><a href="/example/list">{{{__ "delivery"}}}</a></li>
+            <li><a href="/inventory">{{{__ "inventory"}}}</a></li>
+            <li><a href="/reports">{{{__ "reports"}}}</a></li>
+            <li><a href="/admin">{{{__ "admin"}}}</a></li>
+        </ul>
+        <div id="menu-right">
+            {{>user-manager}}
+        </div>
+    </div>
+
+    <a href="javascript:void(0)" class="menu-link menu-on">Menu</a>
+</header>

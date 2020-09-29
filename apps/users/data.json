@@ -1,0 +1,46 @@
+[
+    {
+        "user_id": 1000,
+        "style": 1,
+        "order": 1,
+        "mode": 0,
+        "title": "aa custom component",
+        "name": "component a",
+        "main": [
+            {"type": "text", "content": "string"}
+        ]
+    },
+    {
+        "user_id": 1000,
+        "style": 1,
+        "order": 2,
+        "mode": 0,
+        "title": "bb title",
+        "name": "component b",
+        "main": [
+            {"type": "text", "content": "url"}
+        ]
+    },
+    {
+        "user_id": 1000,
+        "style": 1,
+        "order": 3,
+        "mode": 0,
+        "title": "cc demo",
+        "name": "component c",
+        "main": [
+            {"type": "iframe", "content": "url"}
+        ]
+    },
+    {
+        "user_id": 1000,
+        "style": 0,
+        "order": 4,
+        "mode": 0,
+        "title": "dd full page",
+        "name": "component d",
+        "main": [
+            {"type": "coms", "content": "com_id"}
+        ]
+    }
+]

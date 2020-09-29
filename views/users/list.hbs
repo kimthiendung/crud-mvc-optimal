@@ -1,0 +1,36 @@
+<div class="row center-xs">
+    <div class="col-md-8 col-sm-10 col-xs-12">
+        <div class="ui card">
+            <div class="content">
+                <div class="header">List user</div>
+                <div class="description">
+                    <table id="table-user" class="ui celled table" cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+                                <th>Username</th>
+                                <th>Email</th>
+                                <th>Grant</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>Username</th>
+                                <th>Email</th>
+                                <th>Grant</th>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            {{#each items}}
+                                <tr>
+                                    <td>{{username}}</td>
+                                    <td>{{email}}</td>
+                                    <td><a href="/user/grant/{{_id}}"><i class="privacy icon"></i></a></td>
+                                </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

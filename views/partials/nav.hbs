@@ -1,0 +1,84 @@
+<nav id="sidebar">
+    <ul class="menu-ver">
+        {{#if USER}}
+            <li class="menu-header" title="username"><b>{{USER.username}}</b></li>
+        {{/if}}
+
+        {{#if USER.roles.superadmin}}
+        <li>
+            <a class="item" href="/user/list">{{{__ "manager_users"}}}</a>
+        </li>
+        {{/if}}
+        <li data-menu-parent="/example/list" style="display: none;">
+            <a href="#" class="collapsible"><i class="ti-bar-chart"></i> Example</a>
+            <ul>
+                {{#if ENTITY.example.read}}
+                <li>
+                    <a href="/example/list"><i class="area chart icon"></i> Example list</a>
+                </li>
+                {{/if}}
+
+                {{#if ENTITY.example.write}}
+                <li>
+                    <a href="/example/new"><i class="bar chart icon"></i> Example new</a>
+                </li>
+                {{/if}}
+            </ul>
+        </li>
+
+        <li data-menu-parent="/example/list" style="display: none;">
+            <a href="#" class="collapsible"><i class="ti-bar-chart"></i> {{{__ "orders"}}}</a>
+            <ul>
+                <li>
+                    <a href="/#"><i class="list icon"></i> {{{__ "all_orders"}}}</a>
+                </li>
+                <li>
+                    <a href="/#"><i class="list icon"></i> {{{__ "delivering"}}}</a>
+                </li>
+                <li>
+                    <a href="/#"><i class="list icon"></i> {{{__ "starting_soon"}}}</a>
+                </li>
+                <li>
+                    <a href="/#"><i class="list icon"></i> {{{__ "ending_soon"}}}</a>
+                </li>
+            </ul>
+        </li>
+
+        <li data-menu-parent="/example/list" style="display: none;">
+            <a href="#" class="collapsible"><i class="ti-bar-chart"></i> {{{__ "creatives"}}}</a>
+            <ul>
+                <li>
+                    <a href="/#"><i class="list icon"></i> {{{__ "all_creatives"}}}</a>
+                </li>
+                <li>
+                    <a href="/#"><i class="list icon"></i> {{{__ "creative_templates"}}}</a>
+                </li>
+                <li>
+                    <a href="/#"><i class="list icon"></i> {{{__ "native_styles"}}}</a>
+                </li>
+                <li>
+                    <a href="/#"><i class="list icon"></i> {{{__ "creative_sets"}}}</a>
+                </li>
+            </ul>
+        </li>
+
+        <li data-menu-parent="/example/list" style="display: none;">
+            <a href="#" class="collapsible"><i class="ti-bar-chart"></i> {{{__ "line_items"}}}</a>
+            <ul>
+                <li>
+                    <a href="/#"><i class="list icon"></i> {{{__ "my_line_items"}}}</a>
+                </li>
+                <li>
+                    <a href="/#"><i class="list icon"></i> {{{__ "all_line_items"}}}</a>
+                </li>
+                <li>
+                    <a href="/#"><i class="list icon"></i> {{{__ "inventory_released"}}}</a>
+                </li>
+                <li>
+                    <a href="/#"><i class="list icon"></i> {{{__ "delivering"}}}</a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+
+</nav>

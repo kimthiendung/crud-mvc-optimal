@@ -1,0 +1,60 @@
+<div class="row center-xs" style="min-height: 320px">
+    <div class="col-md-6 col-sm-8 col-xs-12">
+        <div class="ui tall stacked segment">
+            <h2 class="ui header">{{{__ "login"}}} Hadarone</h2>
+            <form id="form-auth" class="ui form" method="POST" action="/auth">
+                <div class="field">
+                    <label>Email</label>
+                    <input type="email" name="email" placeholder="Email"/>
+                </div>
+                <div class="field">
+                    <label>Password</label>
+                    <input type="password" name="password" placeholder="Password"/>
+                </div>
+                <div class="field">
+                    <a href="/auth/forgot">{{{__ "forgot_password"}}} ?</a>
+                </div>
+                <div class="ui large buttons">
+                    <button type="submit" class="ui button green">Login</button>
+                        <div class="or"></div>
+                    <button type="button" id="popup_oauth" class="ui button red">Google</button>
+                </div>
+            </form>
+        </div>
+        <div id="message"></div>
+    </div>
+</div>
+<script>
+    $(function(){
+        $("#form-auth").submit(function(e){
+            e.preventDefault();
+
+            var data = $(this).serialize();
+            var action = $(this).attr('action');
+            $.post(action, data, function(result){
+                if(!result) return false;
+                var alert = $('<div class="ui error message">'+
+                                        '<div class="header">'+
+                                            result.message+
+                                        '</div>'+
+                                    '</div>');
+                $('#message').prepend(alert);
+                
+                if(typeof(result.error) === "undefined" || result.error){
+                    alert.fadeOut(5000, function() { $(this).remove(); });
+                }
+                else{
+                    alert.removeClass('error').addClass('success');
+                    alert.fadeOut(1500, function() {
+                        $(this).remove();
+                        window.location = "/";
+                    });
+                }
+            });
+        });
+
+        $('#popup_oauth').oauthpopup({
+            path:'/auth/google'
+        });
+    })
+</script>

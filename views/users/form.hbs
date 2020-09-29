@@ -1,0 +1,63 @@
+<div class="row center-xs" style="min-height: 320px">
+    <div class="col-md-6 col-sm-8 col-xs-12">
+        <div class="ui tall stacked segment">
+            <h2 class="ui header">Register Hadarone</h2>
+            <form id="form-user" class="ui form" method="POST" action="/user/save">
+                <div class="field">
+                    <label>Username</label>
+                    <input type="text" name="username" placeholder="Username" value="{{items.username}}" required>
+                </div>
+                <div class="field">
+                    <label>Email</label>
+                    <input type="email" name="email" placeholder="Email" value="{{items.email}}" required {{#if items.email}} readonly{{/if}}>
+                </div>
+                <div class="field">
+                    <label>Password</label>
+                    <input id="password" type="password" name="password" placeholder="Password" required minlength=6>
+                </div>
+                <div class="field">
+                    <label>Confirm password</label>
+                    <input type="password" name="password_confrim" placeholder="Password confirm" oninput="UTILS.compareInput(this, document.getElementById('password'))" required/>
+                </div>
+                <div class="ui large buttons">
+                    <button class="ui button green" type="submit">OK</button>
+                </div>
+            </form>
+        </div>
+        <div id="message"></div>
+    </div>
+</div>
+<script>
+    $(function(){
+        $("#form-user").submit(function(e){
+            e.preventDefault();
+
+            var data = $(this).serialize();
+            var action = $(this).attr('action');
+            
+            $.post(action, data, function(result){
+                if(!result) return false;
+                var alert = $('<div class="ui error message">'+
+                                        '<div class="header">'+
+                                            result.message+
+                                        '</div>'+
+                                    '</div>');
+                $('#message').prepend(alert);
+
+                if(typeof(result.error) === "undefined" || result.error){
+                    alert.fadeOut(5000, function() { $(this).remove(); });
+                }
+                else{
+                    alert.removeClass('error').addClass('success');
+                    alert.fadeOut(2000, function() {
+                        $(this).remove();
+                        if (window.opener && window.opener !== window) {
+                            return window.close();
+                        }
+                        window.location = "/";
+                    });
+                }
+            });
+        })
+    })
+</script>
